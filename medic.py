@@ -1,11 +1,10 @@
-import termcolor
+from termcolor import colored, cprint 
 from game_character import GameCharacter
 import datetime
 import time
 import random
 
 class Medic(GameCharacter):
-    # sectumsempra = False
     def __init__(self, name, health , strength) :
 
         self.nanobots = 0
@@ -14,8 +13,16 @@ class Medic(GameCharacter):
         
         super().__init__(name, health ,strength)
 
-        print(f"Your medic {self.name}, to the rescue!")
+        print(f"Your medic '{self.name}', to the rescue!\n")
 
+    def __str__(self):
+        return (f"""
+Medic Stats: \t\t {colored(f"Health  : {self.health}%","green", attrs=['bold'])} 
+\n\t\t\t {colored(f"Strength: {self.strength}%","blue", attrs=['bold'])}
+\n\t\t\t {colored(f"Wizardry Level: {self.magic}", "magenta", attrs=['bold'])}
+\n\t\t\t {colored(f"Nanobots: {self.nanobots}", "cyan", attrs=['bold'])}
+\t\t\t {colored(f"Accuracy: {self.nanobots_accuracy_level}", "cyan", attrs=['bold'])}
+""") 
 
     def heal(self, character):
         heal_value = self.nanobots * self.nanobots_accuracy_level
@@ -30,28 +37,58 @@ class Medic(GameCharacter):
 
 
     def cast_spell_on(self, opponent, explorer):
-        if explorer.sectumsempra == True:                           #use the stronger spell
-            print(f"> {self.name} is trying to cast a spell sectumsempra on {opponent.name}.")
-            print(f"> Sectumsempra... casting the spell.")
+        if self.health <= 0 or self.strength <= 0:
+            cprint("\nYour energy seems too low or you are dead. You can't cast a spell.", attrs=['underline'])
 
-            opponent.health /= 2
-            if opponent.health < 0 :
-                print(termcolor.colored(f"The character you are trying to cast spell on {opponent.name} is dead !! ':(' ", 'red'))
-                self.strength = self.strength - 15                        
-                self.magic = self.magic + 2
+        elif opponent.health <= 0:
+            cprint("\nYour opponent seems dead. You can't cast a spell on them.", attrs=['underline'])
 
-            explorer.sectumsempra == False              
-        else:            
-            print(f"> {self.name} is trying to cast a spell Abracadabra on {opponent.name}.")
+        else:
 
-            print(f"> Abracadabra... casting the spell.")
+            if explorer.sectumsempra == True:                         
+                print(f"'{self.name}' is going to cast the spell 'Sectumsempra' on '{opponent.name}'.\n")
+                time.sleep(2)
+                print(f"SECTUMSEMPRAAA!\n")
 
-            opponent.health -= self.magic * (self.strength / 10)
-            if opponent.health < 0 :
-                print(termcolor.colored(f"The character you are trying to cast spell on {opponent.name} is dead !! ':(' ", 'red'))
-            self.strength = self.strength - 10
-            
-            self.magic = self.magic + 1        
+                # Reseting the flag.
+                explorer.sectumsempra = False 
+
+                opponent.health /= 2
+                print(f"{opponent.name}'s health has been cut in half!\n")
+
+                if opponent.health < 0 :
+
+                    print(colored(f"'{opponent.name}' is dead...", 'red'))
+
+                    self.strength = self.strength - 15
+                    print(f"Wow, that was a powerful spell. Your strength is now: {self.strength}%.\n")   
+
+                    self.magic = self.magic + 2
+                    if self.magic > 8:
+                        self.magic = 7
+                    print(f"Your wizardry level has increased to {self.magic}%.\n")
+
+            else:            
+                print(f"'{self.name}' is going to cast a spell on '{opponent.name}'.\n")
+
+                print("casting the spell... Petrificus Totalus/Confringo/Everte Statum!\n")
+
+                opponent.health -= self.magic * (self.strength / 10)
+
+                if opponent.health < 0 :
+                    print(colored(f"'{opponent.name}' has died..\n", 'red'))
+
+                print(opponent)
+
+                self.strength -= 10
+                print(f"That wasn't easy. Your strength has decreased.\n")
+                
+                self.magic += 1 
+                if self.magic > 8:
+                    self.magic = 7
+                print(f"Your wizardry level has increased .\n")   
+
+                print(self)    
 
 
     def back_to_the_future(self):

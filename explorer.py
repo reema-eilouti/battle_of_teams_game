@@ -3,7 +3,7 @@ import math
 import time
 from game_character import GameCharacter
 from treasure_maps import maps
-import termcolor     
+from termcolor import colored, cprint     
 
 class Explorer(GameCharacter):
     
@@ -19,9 +19,9 @@ class Explorer(GameCharacter):
 
     def __str__(self):
         return (f"""
-Explorer '{self.name}' \t {termcolor.colored(f"Health  : {self.health}%","green")} 
-\n\t\t\t {termcolor.colored(f"Strength: {self.strength}%","blue")}
-\n\t\t\t {termcolor.colored(f"Gold    : {self.gold}$", "yellow")}
+Explorer Stats: \t {colored(f"Health  : {self.health}%","green", attrs=['bold'])} 
+\n\t\t\t {colored(f"Strength: {self.strength}%","blue", attrs=['bold'])}
+\n\t\t\t {colored(f"Gold    : {self.gold}$", "yellow", attrs=['bold'])}
 """) 
         
     def go_on_quest(self):
@@ -177,8 +177,7 @@ Explorer '{self.name}' \t {termcolor.colored(f"Health  : {self.health}%","green"
 
         print(f"\nExplorer '{self.name}' has found {self.gold} golden coins in his quest.\n ")
         self.strength -= self.gold * 2 
-        print(f"Your explorer had a long quest, thier health decreased {self.strength}! ")
-          
+        print(f"Your explorer had a long quest, thier health decreased {self.strength}! ")          
 
         print(self)
     
@@ -188,23 +187,22 @@ Explorer '{self.name}' \t {termcolor.colored(f"Health  : {self.health}%","green"
             time.sleep(3) 
             print(f"'{self.name}' is enternig the vault of fear, one of the five cursed vaults !\n") 
             time.sleep(3) 
-            print("He is shearching for secrets of the darkest book.\n")
-            time.sleep(1) 
-            print("He acquired one of the unforgivable spell......and the spell is ..... ! .\n")
-            time.sleep(1) 
-            print("SECTUMSEMPRA.\n")
+            print("They are searching for 'Secrets of The Darkest Arts' book.\n")
+            time.sleep(7) 
+            print("They acquired one of the unforgivable spells... and the spell is.. \n")
+            time.sleep(2) 
+            cprint("SECTUMSEMPRA.\n", 'red', attrs=['reverse'])
+
             found_time = random.randint(10,50) 
             
-            self.sectumsempra = True                               #flag for the spell, for the midic to use
-            self.strength = self.strength - found_time  
-            if self.strength < found_time:
-                print(f"You explorer {self.name} died in the vault and his body never has forgotten in the darkness!")              
-        
+            self.sectumsempra = True   #flag for the spell, for the midic to use
+                                        
+            self.strength = self.strength - found_time
+
+            if self.strength < 0:
+                self.health = 0
+                print(f"You explorer {self.name} lost all of his strength in this quest. They cannot go back.")
+                time.sleep(5)
+                print(f"{self.name} died in the vault and their body will forever be forgotten in the darkness...")      
         else:
-            print("Your strength is not enugh to enter the forbidden library")
-
-
-    print("hello from the other git")
-    print("another print")
-    print("last print")
-                   
+            print("Your strength is not enough to enter the forbidden library.")                   

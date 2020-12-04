@@ -52,9 +52,3 @@ class GameCharacter:
         return self.magic
 
     # Instance Methods
-    def attack(self, opponent):
-        attack_strength = int((self.health * 0.6 + self.strength * 0.4 + self.magic * 0.2)/12)
-
-        print(f"> {self.name} is attacking {opponent.name}. {(attack_strength)}")
-    
-        opponent.set_health(opponent.get_health() - (attack_strength))
