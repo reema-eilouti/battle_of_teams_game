@@ -26,3 +26,5 @@ medic_1.cast_spell_on(explorer_1,explorer_1)
 # print(explorer_1.health)
 
 # medic1.back_to_the_future()
+
+hi there! if you can read this then we have succeeded! :D 
