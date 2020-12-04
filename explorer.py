@@ -202,4 +202,7 @@ Explorer '{self.name}' \t {termcolor.colored(f"Health  : {self.health}%","green"
         
         else:
             print("Your strength is not enugh to enter the forbidden library")
+
+
+    print("hello from the other git")
                    
