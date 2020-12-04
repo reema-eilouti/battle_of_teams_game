@@ -205,4 +205,6 @@ Explorer '{self.name}' \t {termcolor.colored(f"Health  : {self.health}%","green"
 
 
     print("hello from the other git")
+    print("another print")
+    print("last print")
                    
