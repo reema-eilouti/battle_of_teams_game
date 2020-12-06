@@ -7,9 +7,10 @@ import random
 class Medic(GameCharacter):
     def __init__(self, name, health , strength) :
 
-        self.nanobots = 0
-        self.nanobots_accuracy_level=1
+        self.nanobots = 1
+        self.nanobots_accuracy_level = 1
         self.magic = 1
+        
         
         super().__init__(name, health ,strength)
 
@@ -25,17 +26,23 @@ Medic Stats: \t\t {colored(f"Health  : {self.health}%","green", attrs=['bold'])}
 """) 
 
     def heal(self, character):
-        heal_value = self.nanobots * self.nanobots_accuracy_level
-        print(f"> {self.name} is healing {character.name}. {(heal_value)}")
+        if character.health <= 0:
+            print(f"your teammate {character.name} is dead.")
 
-        if character.get_health() + heal_value > 100 :
-            character.set_health(100)
+        elif self.nanobots < 1:
+            print("You have to get back to the future.")
+
         else:
-            character.set_health(character.get_health() + heal_value)
+            character.health += self.nanobots * self.nanobots_accuracy_level            
+            print(f"> {self.name} is now healing {character.name}.")
+            time.sleep(3)
+            self.strength -= 5
+            print("Healing was not easy, the medic strength was decreased.")
+            print(self)
+            print(character)
 
-        print(f"The medic {self.name} healed their teammate {character.name}")
-
-
+        
+               
     def cast_spell_on(self, opponent, explorer):
         if self.health <= 0 or self.strength <= 0:
             cprint("\nYour energy seems too low or you are dead. You can't cast a spell.", attrs=['underline'])

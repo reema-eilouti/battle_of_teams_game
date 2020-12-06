@@ -2,13 +2,16 @@ from game_character import GameCharacter
 from explorer import Explorer
 from medic import Medic 
 from termcolor import colored, cprint
+import datetime
+import time
+import random
 
 class Warrior(GameCharacter):
 
     def __init__(self, name, health, strength):
 
         self.popularity = 0
-        self.shield = False
+        
         
 
         super().__init__(name, health, strength)
@@ -35,11 +38,32 @@ Warrior Stats: \t\t {colored(f"Health  : {self.health}%","green", attrs=['bold']
             self.strength -= 2
 
     def attack(self, opponent):
-        attack_strength = int((self.health * 0.6 + self.strength * 0.4 + self.magic * 0.2)/12)
+        if opponent.health <= 0:
+            cprint("\nYour opponent seems dead. You can't attack them.", attrs=['underline'])
 
-        print(f"> {self.name} is attacking {opponent.name}. {(attack_strength)}")
-    
-        opponent.set_health(opponent.get_health() - (attack_strength))
+        elif self.strength < 10 or self.health < 10:
+            cprint("\nYour energy seems too low or you are dead. You can't attack.", attrs=['underline'])
+     
+        else:
+            if opponent.shield == True:
+                opponent.shield = False
+                print(f"the opponent {opponent.name} have shield, it repiled this attack and they lost thier shield ")
+
+            else:            
+                time.sleep(3)
+                print(f"the warrior {self.name} attacked {opponent.name}")
+                time.sleep(3)
+                print(f"{opponent.name} is bleading out !")
+                opponent.health -= 10            
+                self.strength -= 10  
+
+            if opponent.health <= 0:
+                print(f"{opponent.name} has died")
+        
+        print(self)
+        print(opponent)
+
+            
 
     def share_intelligence(self, explorer):
         if self.popularity >= 3:
