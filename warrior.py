@@ -16,7 +16,7 @@ class Warrior(GameCharacter):
 
         super().__init__(name, health, strength)
 
-        print(f"{self.name} is ready to fight! \n")
+        print(f"Your warrior{self.name} is ready to fight! \n")
 
     
     def __str__(self):

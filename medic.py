@@ -14,7 +14,7 @@ class Medic(GameCharacter):
         
         super().__init__(name, health ,strength)
 
-        print(f"Your medic '{self.name}', to the rescue!\n")
+        print(f"Your medic '{self.name}', to the rescue!")
 
     def __str__(self):
         return (f"""
@@ -114,3 +114,10 @@ Medic Stats: \t\t {colored(f"Health  : {self.health}%","green", attrs=['bold'])}
         print(f"This means they have extra {datetime} nanobots now. To make the total: {self.nanobots} nanobots.") 
         self.nanobots_accuracy_level += 1
         print(f"Also, the accuracy level of the bots has been increased to {self.nanobots_accuracy_level}.")
+
+
+# import winsound
+
+# freq= 1000
+# dur = 200000
+# winsound.Beep(freq,dur)        
