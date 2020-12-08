@@ -29,6 +29,9 @@ Medic Stats: \t\t {colored(f"Health  : {self.health}%","green", attrs=['bold'])}
 """) 
 
     def heal(self, character):
+        """This function increases the health of the teammember chosen by a factor of [number of nanobots * their accuracy level]
+        also, it decreases the medic strength by 5 """
+
         if character.health <= 0:
             print(f"your teammate '{character.name}' is dead.")
 
@@ -57,6 +60,11 @@ Medic Stats: \t\t {colored(f"Health  : {self.health}%","green", attrs=['bold'])}
             print(character)
    
     def cast_spell_on(self, opponent, explorer):
+        """This function casts two types of spell on the opponent
+        either 'Sectumsempra' or 'Confringo' 
+        if the explorer has gone to the forbidden library sectumsempra is chosen and it is more powerful
+        both decrease the health of the opponent and the strength of the medic"""
+
         if self.health <= 0 or self.strength <= 0:
             cprint("\nYour energy seems too low or you are dead. You can't cast a spell.", attrs=['underline'])
 
@@ -91,7 +99,7 @@ Medic Stats: \t\t {colored(f"Health  : {self.health}%","green", attrs=['bold'])}
             else:            
                 print(f"'{self.name}' is going to cast a spell on '{opponent.name}'.\n")
 
-                print("casting the spell... Petrificus Totalus/Confringo/Everte Statum!\n")
+                print("casting the spell... Confringo!\n")
 
                 opponent.health -= self.magic * (self.strength / 10)
 
@@ -111,22 +119,27 @@ Medic Stats: \t\t {colored(f"Health  : {self.health}%","green", attrs=['bold'])}
                 print(self)    
 
     def back_to_the_future(self):
+        """This function increases the number of nanobots by a random factor
+        and increases their level of accuracy by 1 """
+
         print(f"Brace yourself, the medic '{self.name}' is getting into the DeLorean.\n")
         time.sleep(3) 
+
         print(f"'{self.name}' is checking the flux capacitor and fixing the input on the time circuits.\n") 
         time.sleep(3) 
+
         print("Starting the engine and accelerating...\n")
         time.sleep(3) 
+
         print("88 miles/hour in 1.21 giggawatts! (one light bolt) off we go!\n") 
-        # times = [range(1,11)]
+
         datetime = random.randint(1,11)
         time.sleep(datetime) 
-        print(f"'{self.name}' has traveled forward in time by {datetime} nanoseconds!\n") 
+
+        print(f"'{self.name}' has traveled forward in time by {datetime} nanoseconds!\n")
+
         self.nanobots += datetime
-        print(f"This means they have extra {datetime} nanobots now. To make the total: {self.nanobots} nanobots.") 
+        print(f"This means they have extra {datetime} nanobots now. To make the total: {self.nanobots} nanobots.")
+
         self.nanobots_accuracy_level += 1
-        print(f"Also, the accuracy level of the bots has been increased to {self.nanobots_accuracy_level}.")
-
-
-
-        
+        print(f"Also, the accuracy level of the bots has been increased to {self.nanobots_accuracy_level}.")        

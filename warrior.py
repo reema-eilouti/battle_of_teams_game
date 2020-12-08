@@ -7,22 +7,17 @@ import time
 import random
 import winsound
 
-freq= 1000
-dur = 2000
-
 class Warrior(GameCharacter):
 
     def __init__(self, name, health, strength):
 
-        self.popularity = 0
+        self.popularity = 0    
         
-        
-
         super().__init__(name, health, strength)
 
         print(f"Your warrior '{self.name}' is ready to fight! \n")
 
-    
+
     def __str__(self):
         return (f"""
 Warrior Stats: \t\t {colored(f"Health  : {self.health}%","green", attrs=['bold'])} 
@@ -31,7 +26,10 @@ Warrior Stats: \t\t {colored(f"Health  : {self.health}%","green", attrs=['bold']
 """) 
 
 
-    def buy_armor(self , receiver , explorer):
+    def buy_armor(self, receiver, explorer):
+        """This function adds a shield/armor for any teammate member, in exchange for a one piece of gold 
+        also, this actions reduces the strength of the warrior but increases its popularity"""
+
         if explorer.gold < 1 :
             print(f"Your explorer team member {explorer.name} has zero gold ! \nYou can send your explorer on a quest to collect more gold.")
         else :
@@ -42,6 +40,9 @@ Warrior Stats: \t\t {colored(f"Health  : {self.health}%","green", attrs=['bold']
             self.strength -= 2
 
     def attack(self, opponent):
+        """This function decreases the health of the opponent by a factor of [(1/5)*warrior strength] 
+        also the strength of the warrior who launched the attack decreases"""
+
         if opponent.health <= 0:
             cprint("\nYour opponent seems dead. You can't attack them.", attrs=['underline'])
 
@@ -58,13 +59,13 @@ Warrior Stats: \t\t {colored(f"Health  : {self.health}%","green", attrs=['bold']
                 print(f"the warrior {self.name} attacked {opponent.name}")
                 time.sleep(3)
                 print(f"{opponent.name} is bleading out !")
-                opponent.health -= 10            
-                self.strength -= 10  
+                opponent.health -= self.strength/5            
+                self.strength -= 5  
 
             if opponent.health <= 0:
                 opponent.health = 0
                 print(f"{opponent.name} has died")
-                winsound.Beep(freq,dur)
+                winsound.Beep(1000, 2000)
 
         
         print(f"{self.name} stats are: ")
@@ -73,7 +74,10 @@ Warrior Stats: \t\t {colored(f"Health  : {self.health}%","green", attrs=['bold']
         print(f"{opponent.name} stats are: ")
         print(opponent)
 
+
     def share_intelligence(self, explorer):
+        """This function adds 1 to the explorer's foresight for every 3 popularity points"""
+
         if self.popularity >= 3:
             explorer.foresight  += int(self.popularity / 3) 
             

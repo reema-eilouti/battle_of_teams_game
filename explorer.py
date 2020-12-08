@@ -25,6 +25,8 @@ Explorer Stats: \t {colored(f"Health  : {self.health}%","green", attrs=['bold'])
 """) 
         
     def go_on_quest(self):
+        """This function puts the explorer on a random map to collect gold based on the foresight level
+        also, it decreases the explorer's strength by a factor of [gold * 2] """
 
         print(f"\nExplorer '{self.name}' is on their quest right now.\n ")
 
@@ -41,11 +43,10 @@ Explorer Stats: \t {colored(f"Health  : {self.health}%","green", attrs=['bold'])
         
         
         map[row][column] = 'E'
-        
-        for row_in_map in map:              #print the map
-            print(row_in_map, '\t')
 
-        # money_pouch = 0
+        #print the map
+        for row_in_map in map:              
+            print(row_in_map, '\t')
 
         if row - 1 in index:
             if map[row - 1][column] == '$':
@@ -182,6 +183,10 @@ Explorer Stats: \t {colored(f"Health  : {self.health}%","green", attrs=['bold'])
         print(self)
     
     def forbidden_library(self):
+        """This function's main purpose is to raise the flag of the attribute 'sectumsempra'
+        which makes the following cast_spell_on extra powerful
+        also this quest decreases the explorer's strength by a random factor"""
+
         if self.strength > 10:
             print(f"The explorer {self.name} has entered the forbidden library !\n")
             time.sleep(3) 

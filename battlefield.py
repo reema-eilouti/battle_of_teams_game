@@ -97,7 +97,7 @@ while(game_loop):
     a_explorer_h.finish()
 
     cprint("\nTeam B has :","blue",attrs=['bold'])
-    
+
     print(f" - {b_warrior.name}")
     b_warrior_h = FillingCirclesBar('Health  ', max=100)
     for i in range(b_warrior.health):
