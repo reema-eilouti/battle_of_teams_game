@@ -94,6 +94,8 @@ elif character == 2 :
         player.Go_on_quest()
     elif explorer_choices == 1 :
         player.Forbidden_library()  
+        
+
 ##
 
     
