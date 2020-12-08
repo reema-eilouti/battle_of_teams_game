@@ -8,6 +8,7 @@ from termcolor import colored, cprint
 import datetime
 import time
 import random
+from progress.bar import FillingCirclesBar
 
 
 game_loop = True
