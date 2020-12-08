@@ -54,14 +54,87 @@ team_turn = random.choice(team_turns)
 while(game_loop):
 
     cprint("\nTeam A has : ","red",attrs=['bold'])
-    cprint(f"\t - {a_warrior.name}, {a_warrior.health},{a_warrior.strength}","red")
-    cprint(f"\t - {a_medic.name},{a_medic.health},{a_medic.strength}","red")
-    cprint(f"\t - {a_explorer.name},{a_explorer.health},{a_explorer.strength}","red")
+
+    print(f" - {a_warrior.name}")
+    a_warrior_h = FillingCirclesBar('Health  ', max=100)
+    for i in range(a_warrior.health):
+        a_warrior_h.next()
+        time.sleep(0.009)
+    a_warrior_h.finish()
+
+    a_warrior_s = FillingCirclesBar('Strength', max=100)
+    for i in range(a_warrior.strength):
+        a_warrior_s.next()
+        time.sleep(0.009)
+    a_warrior_s.finish()
+
+    print(f" - {a_medic.name}")
+    a_medic_h = FillingCirclesBar('Health  ', max=100)
+    for i in range(a_medic.health):
+        a_medic_h.next()
+        time.sleep(0.009)
+    a_medic_h.finish()
+
+    a_medic_s = FillingCirclesBar('Strength', max=100)
+    for i in range(a_medic.strength):
+        a_medic_s.next()
+        time.sleep(0.009)
+    a_medic_h.finish()
+
+    print(f" - {a_explorer.name}")
+    a_explorer_h = FillingCirclesBar('Health  ', max=100)
+    for i in range(a_explorer.health):
+        a_explorer_h.next()
+        time.sleep(0.009)
+    a_explorer_h.finish()
+
+    a_explorer_s = FillingCirclesBar('Strength', max=100)
+    for i in range(a_explorer.strength):
+        a_explorer_s.next()
+        time.sleep(0.009)
+        
+    a_explorer_h.finish()
 
     cprint("\nTeam B has :","blue",attrs=['bold'])
-    cprint(f"\t - {b_warrior.name},{b_warrior.health},{b_warrior.strength}","blue")
-    cprint(f"\t - {b_medic.name},{b_medic.health},{b_medic.strength}","blue")
-    cprint(f"\t - {b_explorer.name},{b_explorer.health},{b_explorer.strength}","blue")
+    
+    print(f" - {b_warrior.name}")
+    b_warrior_h = FillingCirclesBar('Health  ', max=100)
+    for i in range(b_warrior.health):
+        b_warrior_h.next()
+        time.sleep(0.009)
+    b_warrior_h.finish()
+
+    b_warrior_s = FillingCirclesBar('Strength', max=100)
+    for i in range(b_warrior.strength):
+        b_warrior_s.next()
+        time.sleep(0.009)
+    b_warrior_s.finish()
+
+    print(f" - {a_medic.name}")
+    b_medic_h = FillingCirclesBar('Health  ', max=100)
+    for i in range(b_medic.health):
+        b_medic_h.next()
+        time.sleep(0.009)
+    b_medic_h.finish()
+
+    b_medic_s = FillingCirclesBar('Strength', max=100)
+    for i in range(b_medic.strength):
+        b_medic_s.next()
+        time.sleep(0.009)
+    b_medic_h.finish()
+
+    print(f" - {b_explorer.name}")
+    b_explorer_h = FillingCirclesBar('Health  ', max=100)
+    for i in range(b_explorer.health):
+        b_explorer_h.next()
+        time.sleep(0.009)
+    b_explorer_h.finish()
+
+    b_explorer_s = FillingCirclesBar('Strength', max=100)
+    for i in range(b_explorer.strength):
+        b_explorer_s.next()
+        time.sleep(0.009)
+    b_explorer_h.finish()
 
     if team_turn == 'a':
         cprint("\nTeam A Turn!\n", attrs=['bold'])
@@ -197,4 +270,3 @@ while(game_loop):
     elif b_warrior.health <= 0 and b_medic.health <= 0:
         cprint("Team A won the game !", "green", attrs=['bold'])
         game_loop = False
-
