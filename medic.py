@@ -7,14 +7,14 @@ import random
 class Medic(GameCharacter):
     def __init__(self, name, health , strength) :
 
-        self.nanobots = 1
-        self.nanobots_accuracy_level = 1
+        self.nanobots = 0
+        self.nanobots_accuracy_level = 0
         self.magic = 1
         
         
         super().__init__(name, health ,strength)
 
-        print(f"Your medic '{self.name}', to the rescue!")
+        print(f"Your medic '{self.name}', to the rescue!\n")
 
     def __str__(self):
         return (f"""
@@ -27,22 +27,32 @@ Medic Stats: \t\t {colored(f"Health  : {self.health}%","green", attrs=['bold'])}
 
     def heal(self, character):
         if character.health <= 0:
-            print(f"your teammate {character.name} is dead.")
+            print(f"your teammate '{character.name}' is dead.")
+
+        elif character.health >= 100:
+            print(f"your teammate {character.name}'s health is already full.")
 
         elif self.nanobots < 1:
             print("You have to get back to the future.")
 
         else:
-            character.health += self.nanobots * self.nanobots_accuracy_level            
+            character.health += self.nanobots * self.nanobots_accuracy_level 
+
+            if character.health > 100:
+                character.health = 100
+
             print(f"> {self.name} is now healing {character.name}.")
             time.sleep(3)
+
             self.strength -= 5
             print("Healing was not easy, the medic strength was decreased.")
-            print(self)
-            print(character)
 
-        
-               
+            print(f"{self.name} stats are:")
+            print(self)
+
+            print(f"{character.name} stats are:")
+            print(character)
+   
     def cast_spell_on(self, opponent, explorer):
         if self.health <= 0 or self.strength <= 0:
             cprint("\nYour energy seems too low or you are dead. You can't cast a spell.", attrs=['underline'])
@@ -96,7 +106,6 @@ Medic Stats: \t\t {colored(f"Health  : {self.health}%","green", attrs=['bold'])}
                 print(f"Your wizardry level has increased .\n")   
 
                 print(self)    
-
 
     def back_to_the_future(self):
         print(f"Brace yourself, the medic '{self.name}' is getting into the DeLorean.\n")
