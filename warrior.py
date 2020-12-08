@@ -5,6 +5,10 @@ from termcolor import colored, cprint
 import datetime
 import time
 import random
+import winsound
+
+freq= 1000
+dur = 2000
 
 class Warrior(GameCharacter):
 
@@ -58,7 +62,10 @@ Warrior Stats: \t\t {colored(f"Health  : {self.health}%","green", attrs=['bold']
                 self.strength -= 10  
 
             if opponent.health <= 0:
+                opponent.health = 0
                 print(f"{opponent.name} has died")
+                winsound.Beep(freq,dur)
+
         
         print(f"{self.name} stats are: ")
         print(self)

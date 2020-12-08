@@ -67,7 +67,7 @@ while(game_loop):
         cprint("\nTeam A Turn!\n", attrs=['bold'])
 
     elif team_turn == 'b':
-        print("\nTeam B Turn!\n", attrs=['bold'])
+        cprint("\nTeam B Turn!\n", attrs=['bold'])
     
     print(characters)
     character = int(input("Choose your characters: (0) / (1) / (2) "))

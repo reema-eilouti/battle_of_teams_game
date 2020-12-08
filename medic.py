@@ -3,7 +3,10 @@ from game_character import GameCharacter
 import datetime
 import time
 import random
+import winsound
 
+freq= 1000
+dur = 2000
 class Medic(GameCharacter):
     def __init__(self, name, health , strength) :
 
@@ -73,8 +76,8 @@ Medic Stats: \t\t {colored(f"Health  : {self.health}%","green", attrs=['bold'])}
                 opponent.health /= 2
                 print(f"{opponent.name}'s health has been cut in half!\n")
 
-                if opponent.health < 0 :
-
+                if opponent.health <= 0 :
+                    opponent.health = 0
                     print(colored(f"'{opponent.name}' is dead...", 'red'))
 
                     self.strength = self.strength - 15
@@ -93,8 +96,8 @@ Medic Stats: \t\t {colored(f"Health  : {self.health}%","green", attrs=['bold'])}
                 opponent.health -= self.magic * (self.strength / 10)
 
                 if opponent.health < 0 :
-                    print(colored(f"'{opponent.name}' has died..\n", 'red'))
-
+                    print(colored(f"'{opponent.name}' has died..\n", 'red'))  
+                    winsound.Beep(freq,dur)
                 print(opponent)
 
                 self.strength -= 10
@@ -125,8 +128,5 @@ Medic Stats: \t\t {colored(f"Health  : {self.health}%","green", attrs=['bold'])}
         print(f"Also, the accuracy level of the bots has been increased to {self.nanobots_accuracy_level}.")
 
 
-# import winsound
 
-# freq= 1000
-# dur = 200000
-# winsound.Beep(freq,dur)        
+        
