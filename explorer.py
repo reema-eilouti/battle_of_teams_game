@@ -10,12 +10,12 @@ class Explorer(GameCharacter):
     def __init__(self, name, health, strength):
 
         self.gold = 0
-        self.foresight  = 2
+        self.foresight  = 1
         self.sectumsempra = None
 
         super().__init__(name, health,strength)
 
-        print(f"\nCommander '{self.name}' at your service.\n ")  
+        print(f"Your explorer '{self.name}' at your service.\n ")  
 
     def __str__(self):
         return (f"""
@@ -26,7 +26,7 @@ Explorer Stats: \t {colored(f"Health  : {self.health}%","green", attrs=['bold'])
         
     def go_on_quest(self):
 
-        print(f"Explorer '{self.name}' is on their quest right now.\n ")
+        print(f"\nExplorer '{self.name}' is on their quest right now.\n ")
 
         map = random.choice(maps)
         
@@ -177,7 +177,7 @@ Explorer Stats: \t {colored(f"Health  : {self.health}%","green", attrs=['bold'])
 
         print(f"\nExplorer '{self.name}' has found {self.gold} golden coins in his quest.\n ")
         self.strength -= self.gold * 2 
-        print(f"Your explorer had a long quest, thier health decreased {self.strength}! ")          
+        print(f"Your explorer had a long quest, their strength decreased {self.strength}! ")          
 
         print(self)
     

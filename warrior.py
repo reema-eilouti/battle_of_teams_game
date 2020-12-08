@@ -16,7 +16,7 @@ class Warrior(GameCharacter):
 
         super().__init__(name, health, strength)
 
-        print(f"Your warrior{self.name} is ready to fight! \n")
+        print(f"Your warrior '{self.name}' is ready to fight! \n")
 
     
     def __str__(self):
@@ -29,7 +29,7 @@ Warrior Stats: \t\t {colored(f"Health  : {self.health}%","green", attrs=['bold']
 
     def buy_armor(self , receiver , explorer):
         if explorer.gold < 1 :
-            print(f"Your explorer team member {explorer.name} has zero gold ! \nyou can send your explorer on a quest to collect more gold")
+            print(f"Your explorer team member {explorer.name} has zero gold ! \nYou can send your explorer on a quest to collect more gold.")
         else :
             print(f"The warrior {self.name} has gone to the market and bought a new shield for a price of one gold")
             explorer.gold -= 1
@@ -60,10 +60,11 @@ Warrior Stats: \t\t {colored(f"Health  : {self.health}%","green", attrs=['bold']
             if opponent.health <= 0:
                 print(f"{opponent.name} has died")
         
+        print(f"{self.name} stats are: ")
         print(self)
-        print(opponent)
 
-            
+        print(f"{opponent.name} stats are: ")
+        print(opponent)
 
     def share_intelligence(self, explorer):
         if self.popularity >= 3:
