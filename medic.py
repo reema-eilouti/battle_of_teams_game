@@ -5,8 +5,7 @@ import time
 import random
 import winsound
 
-freq= 1000
-dur = 2000
+
 class Medic(GameCharacter):
     def __init__(self, name, health , strength) :
 
@@ -32,33 +31,37 @@ Medic Stats: \t\t {colored(f"Health  : {self.health}%","green", attrs=['bold'])}
         """This function increases the health of the teammember chosen by a factor of [number of nanobots * their accuracy level]
         also, it decreases the medic strength by 5 """
 
-        if character.health <= 0:
-            print(f"your teammate '{character.name}' is dead.")
+        if self.health <= 0 :
+            print("Your medic is dead")
 
-        elif character.health >= 100:
-            print(f"your teammate {character.name}'s health is already full.")
+        else :    
+            if character.health <= 0:
+                print(f"your teammate '{character.name}' is dead.")
 
-        elif self.nanobots < 1:
-            print("You have to get back to the future.")
+            elif character.health >= 100:
+                print(f"your teammate {character.name}'s health is already full.")
 
-        else:
-            character.health += self.nanobots * self.nanobots_accuracy_level 
+            elif self.nanobots < 1:
+                print("You have to get back to the future.")
 
-            if character.health > 100:
-                character.health = 100
+            else:
+                character.health += self.nanobots * self.nanobots_accuracy_level 
 
-            print(f"> {self.name} is now healing {character.name}.")
-            time.sleep(3)
+                if character.health > 100:
+                    character.health = 100
 
-            self.strength -= 5
-            print("Healing was not easy, the medic strength was decreased.")
+                print(f"> {self.name} is now healing {character.name}.")
+                time.sleep(3)
 
-            print(f"{self.name} stats are:")
-            print(self)
+                self.strength -= 5
+                print("Healing was not easy, the medic strength was decreased.")
 
-            print(f"{character.name} stats are:")
-            print(character)
-   
+                print(f"{self.name} stats are:")
+                print(self)
+
+                print(f"{character.name} stats are:")
+                print(character)
+    
     def cast_spell_on(self, opponent, explorer):
         """This function casts two types of spell on the opponent
         either 'Sectumsempra' or 'Confringo' 
@@ -103,15 +106,21 @@ Medic Stats: \t\t {colored(f"Health  : {self.health}%","green", attrs=['bold'])}
 
                 opponent.health -= self.magic * (self.strength / 10)
 
-                if opponent.health < 0 :
+                if opponent.health <= 0 :
+                    opponent.health = 0
                     print(colored(f"'{opponent.name}' has died..\n", 'red'))  
-                    winsound.Beep(freq,dur)
+
+                    #This function-call makes the computer Beep to announce the death of the character
+                    # frequency = 100 , duration = 2000 
+                    winsound.Beep(1000,2000)
                 print(opponent)
 
                 self.strength -= 10
                 print(f"That wasn't easy. Your strength has decreased.\n")
                 
                 self.magic += 1 
+
+                #putting a limit to the magic attribute
                 if self.magic > 8:
                     self.magic = 7
                 print(f"Your wizardry level has increased .\n")   
@@ -122,24 +131,28 @@ Medic Stats: \t\t {colored(f"Health  : {self.health}%","green", attrs=['bold'])}
         """This function increases the number of nanobots by a random factor
         and increases their level of accuracy by 1 """
 
-        print(f"Brace yourself, the medic '{self.name}' is getting into the DeLorean.\n")
-        time.sleep(3) 
+        if self.health <= 0 :
+            print("Your medic is dead")
 
-        print(f"'{self.name}' is checking the flux capacitor and fixing the input on the time circuits.\n") 
-        time.sleep(3) 
+        else :
+            print(f"Brace yourself, the medic '{self.name}' is getting into the DeLorean.\n")
+            time.sleep(3) 
 
-        print("Starting the engine and accelerating...\n")
-        time.sleep(3) 
+            print(f"'{self.name}' is checking the flux capacitor and fixing the input on the time circuits.\n") 
+            time.sleep(3) 
 
-        print("88 miles/hour in 1.21 giggawatts! (one light bolt) off we go!\n") 
+            print("Starting the engine and accelerating...\n")
+            time.sleep(3) 
 
-        datetime = random.randint(1,11)
-        time.sleep(datetime) 
+            print("88 miles/hour in 1.21 giggawatts! (one light bolt) off we go!\n") 
 
-        print(f"'{self.name}' has traveled forward in time by {datetime} nanoseconds!\n")
+            datetime = random.randint(1,11)
+            time.sleep(datetime) 
 
-        self.nanobots += datetime
-        print(f"This means they have extra {datetime} nanobots now. To make the total: {self.nanobots} nanobots.")
+            print(f"'{self.name}' has traveled forward in time by {datetime} nanoseconds!\n")
 
-        self.nanobots_accuracy_level += 1
-        print(f"Also, the accuracy level of the bots has been increased to {self.nanobots_accuracy_level}.")        
+            self.nanobots += datetime
+            print(f"This means they have extra {datetime} nanobots now. To make the total: {self.nanobots} nanobots.")
+
+            self.nanobots_accuracy_level += 1
+            print(f"Also, the accuracy level of the bots has been increased to {self.nanobots_accuracy_level}.")        
