@@ -5,7 +5,7 @@ from termcolor import colored, cprint
 import datetime
 import time
 import random
-import winsound
+# import winsound
 
 class Warrior(GameCharacter):
 
@@ -85,7 +85,7 @@ Warrior Stats: \t\t {colored(f"Health  : {self.health}%","green", attrs=['bold']
                     
                     #This function-call makes the computer Beep to announce the death of the character
                     # frequency = 100 , duration = 2000
-                    winsound.Beep(1000, 2000)
+                    # winsound.Beep(1000, 2000)
 
             
             print(f"{self.name} stats are: ")

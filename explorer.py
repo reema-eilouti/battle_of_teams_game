@@ -206,8 +206,8 @@ Explorer Stats: \t {colored(f"Health  : {self.health}%","green", attrs=['bold'])
             print("Your explorer is dead")
 
         else :    
-            # Limiting strength to be more than 10 so that th chance of the explorer 
-            # getting stuck in the vaults is minimized 
+            # Limiting strength to be more than 10 so that the chance of the explorer 
+            # getting stuck in the vaults is minimized. 
             if self.strength > 10:
                 print(f"The explorer {self.name} has entered the forbidden library !\n")
                 time.sleep(3) 
@@ -221,7 +221,7 @@ Explorer Stats: \t {colored(f"Health  : {self.health}%","green", attrs=['bold'])
 
                 found_time = random.randint(10,50) 
                 
-                self.sectumsempra = True   #flag for the spell, for the midic to use
+                self.sectumsempra = True   #flag for the spell, for the medic to use.
                                             
                 self.strength = self.strength - found_time
 

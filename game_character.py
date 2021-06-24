@@ -9,5 +9,6 @@ class GameCharacter:
    
         #Setting default value to the shield 
         self.shield = False
-        #Shield : what the warrior buy when the function buy_armor is called
-        #If a character have a shield the attack on then is will be discarded  
+
+        #Shield : what the warrior buys when the function buy_armor is called
+        #If a character has shield = True the next attack on them will be discarded (have no effect).  
