@@ -12,7 +12,11 @@
 
 - Clone the repo on your machine using: `git clone https://github.com/reema-eilouti/battle_of_teams_game`
 
-- Install dependencies using: `pip3 install termcolor` for displaying colours on terminal.
+- Install dependencies using: 
+```
+pip3 install termcolor
+pip3 install progress
+```
 
 - run the `battlefield.py` file using: `python3 battlefield.py`
 
