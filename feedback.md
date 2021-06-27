@@ -15,3 +15,4 @@
 - To add an undo functionality.
 - Add the type of character (warrior, medic, explorer) beside the character's name.
 - Every time the warrior attacks an attribute of their's should increase and be displayed to user so that when it reaches a level they unlock a speacial powerful move (signature move).
+- To display the amount of damage after each hit clearly to the user.
